@@ -190,11 +190,11 @@
 </header>
 
 <div class="nav-container">
-  <img src="home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
+  <img src="images/home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
   <span class="nav-hover-text">HOME</span>
 </div>
 
-<img src="home.png" alt="Home Flower" class="top-flower">
+<img src="images/home.png" alt="Home Flower" class="top-flower">
 <div class="text-container"></div>
 
 
@@ -203,16 +203,16 @@
 
 <div class="cards-container">
     <div class="card" data-text="I’m driven by the idea that design and tech can forge meaningful connections. Whether it's through immersive experiences or simple interactions, I believe they can bring people, ideas, and emotions together in powerful ways.">
-        <img src="back.png" data-front="front1.png" alt="Card 1">
+        <img src="images/back.png" data-front="images/front1.png" alt="Card 1">
     </div>
     <div class="card" data-text="For me, design is about more than looking good—it has to mean something. I believe every color, shape, and interaction can tell a story or evoke an emotion. It’s about crafting moments that surprise, engage, and leave a lasting impression.">
-      <img src="back.png" data-front="front2.png" alt="Card 2">
+      <img src="images/back.png" data-front="images/front2.png" alt="Card 2">
     </div>
     <div class="card" data-text="I love experimenting to find the right balance between art and function. Sometimes that means late-night debugging or scrapping drafts, but that’s all part of the process. Every project is a journey of discovery, and I wouldn’t have it any other way.">
-      <img src="back.png" data-front="front3.png" alt="Card 3">
+      <img src="images/back.png" data-front="images/front3.png" alt="Card 3">
     </div>
     <div class="card" data-text="I’m Mariam Fatima, an Interactive Media student at NYUAD. I’m all about blending design, technology, and storytelling to create experiences that connect with people. Whether it’s through a website, video, or VR, my goal is to make people feel something real.">
-      <img src="back.png" data-front="front4.png" alt="Card 4">
+      <img src="images/back.png" data-front="images/front4.png" alt="Card 4">
     </div>
   </div>
   
@@ -221,13 +221,13 @@
     <p>© 2024 Mariam Fatima. All rights reserved.</p>
     <div class="social-links">
         <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
-            <img src="linkedin.png" alt="LinkedIn" class="social-logo">
+            <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
         </a>
         <a href="mailto:mxf4882@nyu.edu">
-            <img src="mail.png" alt="Email" class="social-logo">
+            <img src="images/mail.png" alt="Email" class="social-logo">
         </a>
         <a href="https://github.com/mariamf19" target="_blank">
-            <img src="github.png" alt="GitHub" class="social-logo">
+            <img src="images/github.png" alt="GitHub" class="social-logo">
         </a>
     </div>
 </footer>
@@ -255,7 +255,7 @@
   
       card.addEventListener('mouseleave', () => {
         if (!card.classList.contains('active')) {
-          img.src = 'back.png';
+          img.src = 'images/back.png';
         }
       });
   
@@ -265,7 +265,7 @@
           // Reset to original position
           card.classList.remove('active');
           card.style.transform = card.dataset.originalTransform;
-          img.src = 'back.png';
+          img.src = 'images/back.png';
           activeCard = null;
   
           // Hide the text container
@@ -275,7 +275,7 @@
           if (activeCard) {
             activeCard.classList.remove('active');
             activeCard.style.transform = activeCard.dataset.originalTransform;
-            activeCard.querySelector('img').src = 'back.png';
+            activeCard.querySelector('img').src = 'images/back.png';
           }
   
           // Set clicked card as active
