@@ -225,11 +225,11 @@
   </header>
 
   <div class="nav-container">
-    <img src="home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
+    <img src="images/home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
     <span class="nav-hover-text">HOME</span>
   </div>
 
-  <img src="home.png" alt="Home Flower" class="top-flower">
+  <img src="images/home.png" alt="Home Flower" class="top-flower">
 
   <p class="instructions">Find all the sets of three identical cards to complete the game!</p>
 
@@ -246,13 +246,13 @@
     <p>© 2024 Mariam Fatima. All rights reserved.</p>
     <div class="social-links">
         <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
-            <img src="linkedin.png" alt="LinkedIn" class="social-logo">
+            <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
         </a>
         <a href="mailto:mxf4882@nyu.edu">
-            <img src="mail.png" alt="Email" class="social-logo">
+            <img src="images/mail.png" alt="Email" class="social-logo">
         </a>
         <a href="https://github.com/mariamf19" target="_blank">
-            <img src="github.png" alt="GitHub" class="social-logo">
+            <img src="images/github.png" alt="GitHub" class="social-logo">
         </a>
     </div>
 </footer>
@@ -267,18 +267,18 @@ let lockBoard = false;
 let matchedCount = 0;
 
 const cardData = [
-  { id: 1, front: 'front1.png' },
-  { id: 2, front: 'front2.png' },
-  { id: 3, front: 'front3.png' },
-  { id: 4, front: 'front4.png' },
-  { id: 1, front: 'front1.png' },
-  { id: 2, front: 'front2.png' },
-  { id: 3, front: 'front3.png' },
-  { id: 4, front: 'front4.png' },
-  { id: 1, front: 'front1.png' },
-  { id: 2, front: 'front2.png' },
-  { id: 3, front: 'front3.png' },
-  { id: 4, front: 'front4.png' },
+  { id: 1, front: 'images/front1.png' },
+  { id: 2, front: 'images/front2.png' },
+  { id: 3, front: 'images/front3.png' },
+  { id: 4, front: 'images/front4.png' },
+  { id: 1, front: 'images/front1.png' },
+  { id: 2, front: 'images/front2.png' },
+  { id: 3, front: 'images/front3.png' },
+  { id: 4, front: 'images/front4.png' },
+  { id: 1, front: 'images/front1.png' },
+  { id: 2, front: 'images/front2.png' },
+  { id: 3, front: 'images/front3.png' },
+  { id: 4, front: 'images/front4.png' },
 ];
 
 function shuffle(array) {
@@ -306,7 +306,7 @@ function initializeGame() {
 
 function createCardElement(card) {
   const cardImg = document.createElement("img");
-  cardImg.src = "back.png";
+  cardImg.src = "images/back.png";
   cardImg.dataset.id = card.id;
   cardImg.dataset.front = card.front;
 
@@ -344,7 +344,7 @@ function checkForMatch() {
     }
   } else {
     setTimeout(() => {
-      flippedCards.forEach((card) => (card.src = "back.png"));
+      flippedCards.forEach((card) => (card.src = "images/back.png"));
       flippedCards = [];
       lockBoard = false;
     }, 1000);
