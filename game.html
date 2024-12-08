@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonus Game</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      letter-spacing: 8px;
+      font-family: 'Etna', sans-serif;
+      font-weight: 200;
+      background-color: #FFFAEE;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Horizontally center */
+    }
+
+    header {
+      text-align: center;
+      padding: 20px 0; /* Add some space around the title */
+      margin-top: 2px; /* Slight margin from the top of the viewport */
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #006083; /* Deep blue */
+      margin: 0;
+    }
+
+    .nav-flower {
+      position: fixed;
+      top: 5px;
+      left: 5px;
+      width: 70px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .top-flower {
+      position: fixed;
+      top: 5px;
+      right: 5px;
+      width: 70px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .nav-flower:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease;
+    }
+    main {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+      color: #355070; /* Deep blue */
+      font-size: 2rem;
+    }
+    .nav-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+}
+    .nav-hover-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #006083; /* Deep blue */
+  margin-left: 80px; /* Space between icon and text */
+  margin-top: 15px;
+  opacity: 1; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth fade-in */
+}
+
+.nav-container:hover .nav-hover-text {
+  opacity: 1; /* Text appears on hover */
+}
+
+    #grid-container {
+      flex-grow: 1; /* Push the grid container to take up available space */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -20px; 
+    }
+
+    #grid {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+      transform: scale(1);
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    #play-again {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #006083;
+      cursor: pointer;
+      font-family: 'Etna', sans-serif;
+      text-align: center;
+    }
+
+    #play-again.hidden {
+      display: none;
+    }
+
+    footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #FFFAEE;
+    color: #006083;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.social-links {
+    display: flex;           /* Ensures the logos are in one horizontal line */
+    justify-content: center; /* Centers the logos horizontally */
+    align-items: center;     /* Vertically centers the logos */
+    gap: 20px;               /* Adds space between the logos */
+    margin-top: 5px;         /* Space between the footer text and the icons */
+}
+
+.social-logo {
+    width: 30px;             /* Size of the logos */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.social-logo:hover {
+    transform: scale(1.1);   /* Slightly enlarges the logo on hover */
+}
+
+.social-links {
+    display: flex;           /* Ensures the logos are in one horizontal line */
+    justify-content: center; /* Centers the logos horizontally */
+    align-items: center;     /* Vertically centers the logos */
+    gap: 20px;               /* Adds space between the logos */
+    margin-top: 5px;         /* Space between the footer text and the icons */
+}
+
+.social-logo {
+    width: 30px;             /* Size of the logos */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.social-logo:hover {
+    transform: scale(1.1);   /* Slightly enlarges the logo on hover */
+}
+    .instructions {
+  font-size: 1rem;
+  justify-content: flex-start;
+  color: #f29ac1;
+  text-align: center;
+  letter-spacing: 1.5px;
+  margin-bottom: 0px; /* Adjust margin to ensure spacing from the grid */
+  margin-top: 35px; /* Space from the header */
+}
+#game-message {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: #006083;
+  text-align: center;
+  z-index: 5;
+}
+
+#game-message span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#game-message.hidden {
+  display: none;
+}
+
+#play-again {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #006083;
+  cursor: pointer;
+  font-family: 'Etna', sans-serif;
+  text-align: center;
+}
+
+#play-again.hidden {
+  display: none;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BONUS GAME</h1>
+  </header>
+
+  <div class="nav-container">
+    <img src="home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
+    <span class="nav-hover-text">HOME</span>
+  </div>
+
+  <img src="home.png" alt="Home Flower" class="top-flower">
+
+  <p class="instructions">Find all the sets of three identical cards to complete the game!</p>
+
+  <div id="grid-container">
+    <div id="grid"></div>
+  </div>
+
+  <div id="game-message" class="hidden">
+    <p>Good Job! <span id="play-again" onclick="initializeGame()">Play Again</span></p>
+  </div>
+  
+
+  <footer>
+    <p>© 2024 Mariam Fatima. All rights reserved.</p>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
+            <img src="linkedin.png" alt="LinkedIn" class="social-logo">
+        </a>
+        <a href="mailto:mxf4882@nyu.edu">
+            <img src="mail.png" alt="Email" class="social-logo">
+        </a>
+        <a href="https://github.com/mariamf19" target="_blank">
+            <img src="github.png" alt="GitHub" class="social-logo">
+        </a>
+    </div>
+</footer>
+ 
+
+  <script>
+ const grid = document.getElementById("grid");
+const gameMessage = document.getElementById("game-message");
+const playAgainButton = document.getElementById("play-again");
+let flippedCards = [];
+let lockBoard = false;
+let matchedCount = 0;
+
+const cardData = [
+  { id: 1, front: 'front1.png' },
+  { id: 2, front: 'front2.png' },
+  { id: 3, front: 'front3.png' },
+  { id: 4, front: 'front4.png' },
+  { id: 1, front: 'front1.png' },
+  { id: 2, front: 'front2.png' },
+  { id: 3, front: 'front3.png' },
+  { id: 4, front: 'front4.png' },
+  { id: 1, front: 'front1.png' },
+  { id: 2, front: 'front2.png' },
+  { id: 3, front: 'front3.png' },
+  { id: 4, front: 'front4.png' },
+];
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function initializeGame() {
+  grid.innerHTML = "";
+  matchedCount = 0;
+  lockBoard = false;
+  flippedCards = [];
+  gameMessage.classList.add("hidden");
+  playAgainButton.classList.add("hidden");
+
+  const shuffledCards = shuffle([...cardData]);
+  shuffledCards.forEach((card) => {
+    const cardElement = createCardElement(card);
+    grid.appendChild(cardElement);
+  });
+}
+
+function createCardElement(card) {
+  const cardImg = document.createElement("img");
+  cardImg.src = "back.png";
+  cardImg.dataset.id = card.id;
+  cardImg.dataset.front = card.front;
+
+  cardImg.addEventListener("click", () => handleCardClick(cardImg));
+
+  return cardImg;
+}
+
+function handleCardClick(card) {
+  if (lockBoard || card.src.includes(card.dataset.front)) return;
+
+  card.src = card.dataset.front;
+  flippedCards.push(card);
+
+  if (flippedCards.length === 3) {
+    lockBoard = true;
+    checkForMatch();
+  }
+}
+
+function checkForMatch() {
+  const [card1, card2, card3] = flippedCards;
+
+  if (
+    card1.dataset.id === card2.dataset.id &&
+    card1.dataset.id === card3.dataset.id
+  ) {
+    matchedCount += 3;
+    flippedCards = [];
+    lockBoard = false;
+
+    if (matchedCount === cardData.length) {
+      gameMessage.classList.remove("hidden");
+      playAgainButton.classList.remove("hidden");
+    }
+  } else {
+    setTimeout(() => {
+      flippedCards.forEach((card) => (card.src = "back.png"));
+      flippedCards = [];
+      lockBoard = false;
+    }, 1000);
+  }
+}
+
+function navigateHome() {
+  window.location.href = "index.html";
+}
+
+initializeGame();
+
+  </script>
+</body>
+</html>

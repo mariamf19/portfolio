@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      letter-spacing: 8px;
+      font-family: 'Etna', sans-serif;
+      font-weight: 200;
+      background-color: #FFFAEE;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 2px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #006083;
+      margin: 0;
+    }
+
+    .nav-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-flower {
+      position: fixed;
+      top: 5px;
+      left: 5px;
+      width: 70px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .top-flower {
+      position: fixed;
+      top: 5px;
+      right: 5px;
+      width: 70px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .nav-flower:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease;
+    }
+    .nav-hover-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #006083;
+            margin-left: 80px;
+            margin-top: 15px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .nav-container:hover .nav-hover-text {
+            opacity: 1;
+        }
+
+    .cards-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-grow: 1;
+      margin-bottom: 100px;
+      margin-left: 200px;
+      height: 100%;
+      position: relative;
+    }
+    .text-container {
+      position: absolute;
+      top: 40%;
+      right: 5%;
+      width: 480px;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      line-height: 22px;
+        color: #006083; /* Text color remains the same */
+        font-weight: 200; /* Optional: Adjust the weight to make it less bold */
+        display: none; /* Initially hidden */
+        text-align: left; /* Optional: Align the text to the right */
+}
+.instructions {
+  font-size: 1rem; /* Adjust size */
+  color: #f29ac1; 
+  text-align: center; /* Center it horizontally */
+  letter-spacing: 1.5px;
+  margin-top: 35px;
+  margin-bottom: 3px; /* Space below the text */
+}
+
+    .card {
+      position: absolute;
+      cursor: pointer;
+      transition: transform 0.3s ease, z-index 0.3s ease;
+    }
+
+    .card img {
+      display: block;
+      width: auto;
+      height: 220px;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card img:hover {
+      transform: scale(1.05);
+    }
+
+    .card:nth-child(1) {
+      transform: rotate(-40deg) translateX(-60px);
+      z-index: 1;
+    }
+
+    .card:nth-child(2) {
+      transform: rotate(-25deg) translateX(-20px);
+      z-index: 2;
+    }
+
+    .card:nth-child(3) {
+      transform: rotate(-10deg) translateX(20px);
+      z-index: 3;
+    }
+
+    .card:nth-child(4) {
+      transform: rotate(5deg) translateX(60px);
+      z-index: 4;
+    }
+
+    .card.active {
+      transform: translateX(0) scale(1);
+      z-index: 5;
+    }
+
+    footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #FFFAEE;
+    color: #006083;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.social-links {
+    display: flex;           /* Ensures the logos are in one horizontal line */
+    justify-content: center; /* Centers the logos horizontally */
+    align-items: center;     /* Vertically centers the logos */
+    gap: 20px;               /* Adds space between the logos */
+    margin-top: 5px;         /* Space between the footer text and the icons */
+}
+
+.social-logo {
+    width: 30px;             /* Size of the logos */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.social-logo:hover {
+    transform: scale(1.1);   /* Slightly enlarges the logo on hover */
+}
+
+
+
+  </style>
+</head>
+<body>
+<header>
+    <h1>ABOUT</h1>
+</header>
+
+<div class="nav-container">
+  <img src="home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
+  <span class="nav-hover-text">HOME</span>
+</div>
+
+<img src="home.png" alt="Home Flower" class="top-flower">
+<div class="text-container"></div>
+
+
+<p class="instructions">Click on a card to know more about me.</p>
+
+
+<div class="cards-container">
+    <div class="card" data-text="I’m driven by the idea that design and tech can forge meaningful connections. Whether it's through immersive experiences or simple interactions, I believe they can bring people, ideas, and emotions together in powerful ways.">
+        <img src="back.png" data-front="front1.png" alt="Card 1">
+    </div>
+    <div class="card" data-text="For me, design is about more than looking good—it has to mean something. I believe every color, shape, and interaction can tell a story or evoke an emotion. It’s about crafting moments that surprise, engage, and leave a lasting impression.">
+      <img src="back.png" data-front="front2.png" alt="Card 2">
+    </div>
+    <div class="card" data-text="I love experimenting to find the right balance between art and function. Sometimes that means late-night debugging or scrapping drafts, but that’s all part of the process. Every project is a journey of discovery, and I wouldn’t have it any other way.">
+      <img src="back.png" data-front="front3.png" alt="Card 3">
+    </div>
+    <div class="card" data-text="I’m Mariam Fatima, an Interactive Media student at NYUAD. I’m all about blending design, technology, and storytelling to create experiences that connect with people. Whether it’s through a website, video, or VR, my goal is to make people feel something real.">
+      <img src="back.png" data-front="front4.png" alt="Card 4">
+    </div>
+  </div>
+  
+
+  <footer>
+    <p>© 2024 Mariam Fatima. All rights reserved.</p>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
+            <img src="linkedin.png" alt="LinkedIn" class="social-logo">
+        </a>
+        <a href="mailto:mxf4882@nyu.edu">
+            <img src="mail.png" alt="Email" class="social-logo">
+        </a>
+        <a href="https://github.com/mariamf19" target="_blank">
+            <img src="github.png" alt="GitHub" class="social-logo">
+        </a>
+    </div>
+</footer>
+ 
+
+<script>
+    function navigateHome() {
+      window.location.href = "index.html"; // Replace with the actual home page URL
+    }
+  
+    const cards = document.querySelectorAll('.card');
+    const textContainer = document.querySelector('.text-container');
+    let activeCard = null;
+  
+    cards.forEach((card) => {
+      const img = card.querySelector('img');
+  
+      // Save the original transform (fanned-out position)
+      card.dataset.originalTransform = card.style.transform;
+  
+      // Hover Effect: Show Front Temporarily
+      card.addEventListener('mouseenter', () => {
+        img.src = img.getAttribute('data-front');
+      });
+  
+      card.addEventListener('mouseleave', () => {
+        if (!card.classList.contains('active')) {
+          img.src = 'back.png';
+        }
+      });
+  
+      // Click Effect: Move to Leftmost Position or Reset and Show Text
+      card.addEventListener('click', () => {
+        if (card.classList.contains('active')) {
+          // Reset to original position
+          card.classList.remove('active');
+          card.style.transform = card.dataset.originalTransform;
+          img.src = 'back.png';
+          activeCard = null;
+  
+          // Hide the text container
+          textContainer.style.display = 'none';
+        } else {
+          // Reset previously active card
+          if (activeCard) {
+            activeCard.classList.remove('active');
+            activeCard.style.transform = activeCard.dataset.originalTransform;
+            activeCard.querySelector('img').src = 'back.png';
+          }
+  
+          // Set clicked card as active
+          card.classList.add('active');
+          activeCard = card;
+          card.style.transform = 'translateX(200px) scale(1.3)';
+          img.src = img.getAttribute('data-front');
+  
+          // Update the text container with this card's text
+          textContainer.textContent = card.getAttribute('data-text');
+          textContainer.style.display = 'block'; // Show the text container
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>

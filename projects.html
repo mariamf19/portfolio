@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        @font-face {
+            font-family: 'Etna';
+            src: url('etna.otf') format('opentype');
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            letter-spacing: 8px;
+            font-family: 'Etna', sans-serif;
+            font-weight: 200;
+            background-color: #FFFAEE;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .nav-flower {
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            width: 70px;
+            height: auto;
+            cursor: pointer;
+        }
+        .top-flower {
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            width: 70px;
+            height: auto;
+            cursor: pointer;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-top: 50px;
+            color: #006083;
+            margin: 0;
+        }
+        .nav-flower:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-hover-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #006083;
+            margin-left: 80px;
+            margin-top: 15px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .nav-container:hover .nav-hover-text {
+            opacity: 1;
+        }
+        main {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+            color: #355070;
+            font-size: 2rem;
+        }
+        .flower-container {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        .flower {
+            width: 300px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        #bouquet {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0px;
+        }
+        .flower:hover {
+            transform: scale(1.2);
+            opacity: 0.9;
+        }
+        .hover-text {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            color: #006083;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        .flower-container:hover .hover-text {
+            opacity: 1;
+        }
+        .flower-container.clicked .hover-text {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+            transition: transform 0.5s ease;
+        }
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        .instructions {
+            font-size: 1rem;
+            color: #f29ac1;
+            text-align: center;
+            letter-spacing: 1.5px;
+            margin-top: 35px;
+            margin-bottom: 3px;
+        }
+        .reset-link {
+            text-decoration: underline;
+            color: #006083;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: opacity 0.3s ease;
+        }
+        #reset-container {
+            display: none;
+            opacity: 0;
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 15;
+        }
+        footer {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #FFFAEE;
+    color: #006083;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.social-links {
+    display: flex;           /* Ensures the logos are in one horizontal line */
+    justify-content: center; /* Centers the logos horizontally */
+    align-items: center;     /* Vertically centers the logos */
+    gap: 20px;               /* Adds space between the logos */
+    margin-top: 5px;         /* Space between the footer text and the icons */
+}
+
+.social-logo {
+    width: 30px;             /* Size of the logos */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.social-logo:hover {
+    transform: scale(1.1);   /* Slightly enlarges the logo on hover */
+}
+
+
+
+        .card {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+            display: none;
+            pointer-events: none;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1.9s ease, scale 1.9s ease;
+        }
+        .card:hover .card-inner {
+            transform: rotateY(180deg) scale(1.1);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .card-front {
+            background-image: url('back2.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .card-front span {
+            font-size: 15px;
+            font-family: 'Etna', sans-serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #006083;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover .card-front span {
+            opacity: 0;
+        }
+        .card.hover-enabled {
+    pointer-events: auto; /* Enable hover interaction after 5 seconds */
+}
+        .card-back {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: rotateY(180deg);
+        }
+        .visible {
+            display: block;
+        }
+        .top-left { top: 70px; left: 130px; }
+        .top-right { top: 70px; right: 130px; }
+        .bottom-left { bottom: 50px; left: 130px; }
+        .bottom-right { bottom: 50px; right: 130px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PROJECTS</h1>
+    </header>
+    <img src="home.png" alt="Home Flower" class="top-flower">
+    <div class="nav-container">
+        <img src="home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
+        <span class="nav-hover-text">HOME</span>
+    </div>
+    <p class="instructions">What would you like to see?</p>
+    <div id="bouquet-container" style="display: flex; justify-content: center; align-items: center; position: relative; flex-grow: 1;">
+        <div id="bouquet">
+            <div class="flower-container" id="flora1">
+                <img src="flora1.png" alt="Comm Lab" class="flower">
+                <span class="hover-text">Communications Lab</span>
+            </div>
+            <div class="flower-container" id="flora2">
+                <img src="flora2.png" alt="Creative Coding" class="flower">
+                <span class="hover-text">Creative Coding</span>
+            </div>
+            <!-- <div class="flower-container" id="flora3">
+                <img src="flora3.png" alt="Graphic Design" class="flower">
+                <span class="hover-text">Graphic Design</span>
+            </div> -->
+        </div>
+    </div>
+    <div id="reset-container" style="text-align: center; margin-top: 0px; display: none; z-index: 11; margin-bottom: 50px; letter-spacing: 3px;">
+        <a href="#" id="reset-link" style="text-decoration: underline; color: #006083; cursor: pointer; font-size: 1rem;">
+            Back to Projects
+        </a>
+    </div>
+    <div class="card top-left">
+        <div class="card-inner">
+            <div class="card-front">
+                <span>"Connection"<br>30MFF</span>
+            </div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <div class="card bottom-right">
+        <div class="card-inner">
+            <div class="card-front">
+                <span>"Light Trouble"<br>Comic Strip<br>Group Project</span>
+            </div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <div class="card top-right">
+        <div class="card-inner">
+            <div class="card-front">
+                <span>"Shushed"<br>Video Production<br>Group Project</span>
+            </div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <div class="card bottom-left">
+        <div class="card-inner">
+            <div class="card-front">
+                <span>"Stages of Grief"<br>Sound Production<br>Group Project</span>
+            </div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <footer>
+      <p>© 2024 Mariam Fatima. All rights reserved.</p>
+      <div class="social-links">
+          <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
+              <img src="linkedin.png" alt="LinkedIn" class="social-logo">
+          </a>
+          <a href="mailto:mxf4882@nyu.edu">
+              <img src="mail.png" alt="Email" class="social-logo">
+          </a>
+          <a href="https://github.com/mariamf19" target="_blank">
+              <img src="github.png" alt="GitHub" class="social-logo">
+          </a>
+      </div>
+  </footer>
+   
+    <script>
+        function navigateHome() {
+            window.location.href = "index.html";
+        }
+
+        const flowers = document.querySelectorAll('.flower-container');
+        const resetLink = document.getElementById('reset-link');
+        const resetContainer = document.getElementById('reset-container');
+        const cards = document.querySelectorAll('.card');
+        const bouquet = document.getElementById('bouquet');
+
+        document.querySelectorAll('.flower-container').forEach((flowerContainer, index) => {
+    flowerContainer.addEventListener('click', () => {
+        const resetContainer = document.getElementById('reset-container');
+        
+        resetContainer.style.display = "block";
+        setTimeout(() => {
+            resetContainer.style.opacity = "1";
+        }, 10);
+
+        const allFlowers = document.querySelectorAll('.flower-container');
+        const instructions = document.querySelector('.instructions');
+        if (instructions) {
+            instructions.style.opacity = "0";
+            setTimeout(() => {
+                instructions.style.display = "none";
+            }, 500);
+        }
+        allFlowers.forEach((container, i) => {
+            const flower = container.querySelector('.flower');
+            const hoverText = container.querySelector('.hover-text');
+            if (container !== flowerContainer) {
+                container.classList.add('hidden');
+                hoverText.style.opacity = "0";
+            } else {
+                container.classList.add('clicked');
+                hoverText.style.opacity = "1";
+            }
+            if (index === 0) {
+                flower.style.transform = "translateX(150px)";
+                hoverText.style.transform = "translateX(50px) translateY(-10px)";
+            } else if (index === 2) {
+                flower.style.transform = "translateX(-300px)";
+                hoverText.style.transform = "translateX(-370px) translateY(-5px)";
+            } else if (index === 1) {
+                flower.style.transform = "translateX(-160px)";
+                hoverText.style.transform = "translateX(-230px) translateY(-20px)";
+            }
+        });
+
+        // Change the back images of the cards
+        const cardBacks = document.querySelectorAll('.card-back');
+        let imagePrefix;
+        let cardTextPrefix;
+        let cardTexts;
+        let cardLinks = [];
+
+        // Set the appropriate text and image prefix based on the selected flower
+        if (flowerContainer.id === 'flora1') {  // Communications Lab
+            imagePrefix = 'cl';
+            cardTextPrefix = 'Communications Lab';
+            cardTexts = [
+                '"Connection"<br>30MFF',
+                '"Shushed"<br>Video Production<br>Group Project',
+                '"Stages of Grief"<br>Sound Production<br>Group Project',
+                '"Light Trouble"<br>Comic Strip<br>Group Project',
+                
+            ];
+            cardLinks = [
+                'https://mariamf19.github.io/connection-github.io/',
+                'https://mariamf19.github.io/Shushed/',
+                'https://ivan-si.github.io/SoundProjectCommLab/index.html',
+                'https://tadilbek11kz.github.io/interactive-comic/pages.html'
+            ];
+        } else if (flowerContainer.id === 'flora2') {  // Creative Coding
+            imagePrefix = 'cc';
+            cardTextPrefix = 'Creative Coding';
+            cardTexts = [
+                '"Cupid"<br>p5 Sketch',
+                '"Fortune Cookie"<br>p5 Sketch',
+                '"Sunset"<br>p5 Sketch',
+                '"Garden Guardian"<br>p5 Sketch'
+            ];
+            cardLinks = [
+                'https://editor.p5js.org/mariam4882/full/k_f1qFU4f',
+                'https://editor.p5js.org/mariam4882/full/pwsOkePmN',
+                'https://editor.p5js.org/mariam4882/full/7NvqPDeao',
+                'https://editor.p5js.org/mariam4882/full/Tp8vp-vJE'
+            ];
+        }
+        // } else if (flowerContainer.id === 'flora3') {  // Graphic Design
+        //     imagePrefix = 'gd';
+        //     cardTextPrefix = 'Graphic Design';
+        //     cardTexts = [
+        //         '"Visual Concept"',
+        //         '"Visual Concept"',
+        //         '"Poster Design"',
+        //         '"Poster Design"'
+        //     ];
+        //     cardLinks = [
+        //         'https://link-to-connection-project.com',
+        //         'https://link-to-light-trouble-project.com',
+        //         'https://link-to-shushed-project.com',
+        //         'https://link-to-stages-of-grief-project.com'
+        //     ];
+        // }
+        
+        // Change the card back images based on the selected flower
+        cardBacks.forEach((cardBack, i) => {
+            cardBack.style.backgroundImage = `url('${imagePrefix}${i + 1}.png')`;
+        });
+
+        // Dynamically change the text of each card based on the selected flower
+        const cardFrontSpans = document.querySelectorAll('.card-front span');
+        cardFrontSpans.forEach((span, index) => {
+            span.innerHTML = cardTexts[index];
+        });
+
+        // Add click events to each card to navigate to the link
+        const allCards = document.querySelectorAll('.card');
+        allCards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                window.location.href = cardLinks[index];  // Navigate to the corresponding link
+            });
+        });
+
+        // Add a delay before enabling hover effect on cards (5 seconds)
+        setTimeout(() => {
+            allCards.forEach(card => {
+                card.classList.add('hover-enabled'); // This class will enable hover effect
+            });
+        }, 1500); // 5 seconds delay for hover effect
+
+        // Show the cards with a delay
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 200);
+        });
+    });
+});
+
+
+document.getElementById('reset-link').addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const resetContainer = document.getElementById('reset-container');
+    resetContainer.style.opacity = "0";
+    setTimeout(() => {
+        resetContainer.style.display = "none";
+    }, 300);
+
+    // Reset flowers to their initial state
+    const allFlowers = document.querySelectorAll('.flower-container');
+    allFlowers.forEach((container) => {
+        const flower = container.querySelector('.flower');
+        const hoverText = container.querySelector('.hover-text');
+        container.classList.remove('hidden', 'clicked');
+        flower.style.transform = "";
+        hoverText.style.transform = "";
+        hoverText.style.opacity = "";
+    });
+
+    // Show instructions again
+    const instructions = document.querySelector('.instructions');
+    if (instructions) {
+        instructions.style.display = "block";
+        instructions.style.opacity = "1";
+    }
+
+    // Hide all visible cards
+    cards.forEach((card) => {
+        card.classList.remove('visible');
+    });
+
+    // After clicking "Back to Projects", add a delay before enabling hover effect
+    setTimeout(() => {
+        // Re-enable hover effect after 5 seconds (delay from the initial state)
+        allFlowers.forEach(container => {
+            const flower = container.querySelector('.flower');
+            flower.style.transition = "transform 0.5s ease, opacity 0.5s ease";  // Enable transitions
+        });
+
+        // Reapply hover enablement after reset
+        setTimeout(() => {
+            const allCards = document.querySelectorAll('.card');
+            allCards.forEach(card => {
+                card.classList.add('hover-enabled'); // Re-enable hover effect after reset
+            });
+        }, 1500); // 5 seconds delay for hover effect
+    }, 100); // Small delay before re-enabling hover functionality
+});
+
+    </script>
+</body>
+</html>
