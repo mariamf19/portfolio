@@ -72,29 +72,97 @@
             opacity: 1;
         }
 
-    .cards-container {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      flex-grow: 1;
-      margin-bottom: 100px;
-      margin-left: 200px;
-      height: 100%;
-      position: relative;
-    }
-    .text-container {
-      position: absolute;
-      top: 40%;
-      right: 5%;
-      width: 480px;
-      font-size: 1rem;
-      letter-spacing: 1.5px;
-      line-height: 22px;
-        color: #006083; /* Text color remains the same */
-        font-weight: 200; /* Optional: Adjust the weight to make it less bold */
-        display: none; /* Initially hidden */
-        text-align: left; /* Optional: Align the text to the right */
+        .cards-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+    margin-bottom: 100px;
+    margin-left: 200px;
+    height: 100%;
+    position: relative;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    width: 100%; /* Make sure the container takes full width */
 }
+
+.card {
+    position: relative;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.3s ease, z-index 0.3s ease;
+    width: 22vw; /* Set width based on the viewport width */
+    height: auto;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1024px) {
+    .cards-container {
+        margin-left: 50px; /* Reduce the left margin on tablet-sized screens */
+        margin-right: 50px; /* Optional: Add right margin for better spacing */
+        margin-bottom: 50px; /* Adjust bottom margin for better space */
+    }
+    .card {
+        width: 30vw; /* Increase card size on medium-sized screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        margin-left: 20px; /* Reduce left margin on smaller screens */
+        margin-right: 20px; /* Reduce right margin */
+        margin-bottom: 30px; /* Adjust bottom margin for better space */
+        justify-content: center; /* Center the cards horizontally */
+    }
+    .card {
+        width: 40vw; /* Increase card size on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-container {
+        margin-left: 10px; /* Reduce left margin on mobile screens */
+        margin-right: 10px; /* Reduce right margin on mobile screens */
+        margin-bottom: 20px; /* Reduce bottom margin for better space */
+    }
+    .card {
+        width: 80vw; /* Make cards bigger on very small screens */
+    }
+}
+
+
+    .text-container {
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    width: 480px; /* Default width */
+    font-size: 1rem; /* Default font size */
+    letter-spacing: 1.5px;
+    line-height: 22px;
+    color: #006083;
+    font-weight: 200;
+    display: none;
+    text-align: left;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .text-container {
+        width: 70%; /* Adjust width to 70% of the container for tablet screens */
+        font-size: 1.2rem; /* Increase font size slightly for better readability */
+        top: 45%; /* Adjust vertical positioning */
+        right: 10%; /* Center horizontally by adjusting the right position */
+    }
+}
+
+@media (max-width: 480px) {
+    .text-container {
+        width: 90%; /* Adjust width to 90% of the container for mobile screens */
+        font-size: 1rem; /* Keep the font size readable on mobile */
+        top: 50%; /* Slightly adjust vertical positioning */
+        right: 5%; /* Adjust the right margin for better alignment */
+    }
+}
+
 .instructions {
   font-size: 1rem; /* Adjust size */
   color: #f29ac1; 
@@ -190,11 +258,11 @@
 </header>
 
 <div class="nav-container">
-  <img src="images/home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
+  <img src="home.png" alt="Home Flower" class="nav-flower" onclick="navigateHome()">
   <span class="nav-hover-text">HOME</span>
 </div>
 
-<img src="images/home.png" alt="Home Flower" class="top-flower">
+<img src="home.png" alt="Home Flower" class="top-flower">
 <div class="text-container"></div>
 
 
@@ -203,16 +271,16 @@
 
 <div class="cards-container">
     <div class="card" data-text="I’m driven by the idea that design and tech can forge meaningful connections. Whether it's through immersive experiences or simple interactions, I believe they can bring people, ideas, and emotions together in powerful ways.">
-        <img src="images/back.png" data-front="images/front1.png" alt="Card 1">
+        <img src="back.png" data-front="front1.png" alt="Card 1">
     </div>
     <div class="card" data-text="For me, design is about more than looking good—it has to mean something. I believe every color, shape, and interaction can tell a story or evoke an emotion. It’s about crafting moments that surprise, engage, and leave a lasting impression.">
-      <img src="images/back.png" data-front="images/front2.png" alt="Card 2">
+      <img src="back.png" data-front="front2.png" alt="Card 2">
     </div>
     <div class="card" data-text="I love experimenting to find the right balance between art and function. Sometimes that means late-night debugging or scrapping drafts, but that’s all part of the process. Every project is a journey of discovery, and I wouldn’t have it any other way.">
-      <img src="images/back.png" data-front="images/front3.png" alt="Card 3">
+      <img src="back.png" data-front="front3.png" alt="Card 3">
     </div>
     <div class="card" data-text="I’m Mariam Fatima, an Interactive Media student at NYUAD. I’m all about blending design, technology, and storytelling to create experiences that connect with people. Whether it’s through a website, video, or VR, my goal is to make people feel something real.">
-      <img src="images/back.png" data-front="images/front4.png" alt="Card 4">
+      <img src="back.png" data-front="front4.png" alt="Card 4">
     </div>
   </div>
   
@@ -221,13 +289,13 @@
     <p>© 2024 Mariam Fatima. All rights reserved.</p>
     <div class="social-links">
         <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
-            <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
+            <img src="linkedin.png" alt="LinkedIn" class="social-logo">
         </a>
         <a href="mailto:mxf4882@nyu.edu">
-            <img src="images/mail.png" alt="Email" class="social-logo">
+            <img src="mail.png" alt="Email" class="social-logo">
         </a>
         <a href="https://github.com/mariamf19" target="_blank">
-            <img src="images/github.png" alt="GitHub" class="social-logo">
+            <img src="github.png" alt="GitHub" class="social-logo">
         </a>
     </div>
 </footer>
@@ -255,7 +323,7 @@
   
       card.addEventListener('mouseleave', () => {
         if (!card.classList.contains('active')) {
-          img.src = 'images/back.png';
+          img.src = 'back.png';
         }
       });
   
@@ -265,7 +333,7 @@
           // Reset to original position
           card.classList.remove('active');
           card.style.transform = card.dataset.originalTransform;
-          img.src = 'images/back.png';
+          img.src = 'back.png';
           activeCard = null;
   
           // Hide the text container
@@ -275,7 +343,7 @@
           if (activeCard) {
             activeCard.classList.remove('active');
             activeCard.style.transform = activeCard.dataset.originalTransform;
-            activeCard.querySelector('img').src = 'images/back.png';
+            activeCard.querySelector('img').src = 'back.png';
           }
   
           // Set clicked card as active
