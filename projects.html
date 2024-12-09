@@ -154,39 +154,34 @@
             z-index: 15;
         }
         footer {
-    width: 100%;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: #FFFAEE;
-    color: #006083;
-    font-size: 0.6rem;
-    letter-spacing: 1px;
-    padding: 10px 0;
-    z-index: 1;
-    pointer-events: auto;
-}
-
-.social-links {
-    display: flex;           /* Ensures the logos are in one horizontal line */
-    justify-content: center; /* Centers the logos horizontally */
-    align-items: center;     /* Vertically centers the logos */
-    gap: 20px;               /* Adds space between the logos */
-    margin-top: 5px;         /* Space between the footer text and the icons */
-}
-
-.social-logo {
-    width: 30px;             /* Size of the logos */
-    height: auto;
-    transition: transform 0.3s ease;
-}
-
-.social-logo:hover {
-    transform: scale(1.1);   /* Slightly enlarges the logo on hover */
-}
-
-
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: #FFFAEE;
+            color: #006083;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            z-index: 1;
+            pointer-events: auto;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        .social-logo {
+            width: 30px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .social-logo:hover {
+            transform: scale(1.1);
+        }
 
         .card {
             position: absolute;
@@ -235,8 +230,8 @@
             opacity: 0;
         }
         .card.hover-enabled {
-    pointer-events: auto; /* Enable hover interaction after 5 seconds */
-}
+            pointer-events: auto;
+        }
         .card-back {
             background-size: contain;
             background-repeat: no-repeat;
@@ -250,6 +245,25 @@
         .top-right { top: 70px; right: 130px; }
         .bottom-left { bottom: 50px; left: 130px; }
         .bottom-right { bottom: 50px; right: 130px; }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .flower {
+                width: 200px;
+            }
+            .instructions {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flower {
+                width: 150px;
+            }
+            .instructions {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -272,10 +286,6 @@
                 <img src="images/flora2.png" alt="Creative Coding" class="flower">
                 <span class="hover-text">Creative Coding</span>
             </div>
-            <!-- <div class="flower-container" id="flora3">
-                <img src="flora3.png" alt="Graphic Design" class="flower">
-                <span class="hover-text">Graphic Design</span>
-            </div> -->
         </div>
     </div>
     <div id="reset-container" style="text-align: center; margin-top: 0px; display: none; z-index: 11; margin-bottom: 50px; letter-spacing: 3px;">
@@ -316,19 +326,19 @@
         </div>
     </div>
     <footer>
-      <p>© 2024 Mariam Fatima. All rights reserved.</p>
-      <div class="social-links">
-          <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
-              <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
-          </a>
-          <a href="mailto:mxf4882@nyu.edu">
-              <img src="images/mail.png" alt="Email" class="social-logo">
-          </a>
-          <a href="https://github.com/mariamf19" target="_blank">
-              <img src="images/github.png" alt="GitHub" class="social-logo">
-          </a>
-      </div>
-  </footer>
+        <p>© 2024 Mariam Fatima. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
+                <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
+            </a>
+            <a href="mailto:mxf4882@nyu.edu">
+                <img src="images/mail.png" alt="Email" class="social-logo">
+            </a>
+            <a href="https://github.com/mariamf19" target="_blank">
+                <img src="images/github.png" alt="GitHub" class="social-logo">
+            </a>
+        </div>
+    </footer>
    
     <script>
         function navigateHome() {
@@ -342,42 +352,41 @@
         const bouquet = document.getElementById('bouquet');
 
         document.querySelectorAll('.flower-container').forEach((flowerContainer, index) => {
-    flowerContainer.addEventListener('click', () => {
-        const resetContainer = document.getElementById('reset-container');
-        
-        resetContainer.style.display = "block";
-        setTimeout(() => {
-            resetContainer.style.opacity = "1";
-        }, 10);
+            flowerContainer.addEventListener('click', () => {
+                const resetContainer = document.getElementById('reset-container');
+                resetContainer.style.display = "block";
+                setTimeout(() => {
+                    resetContainer.style.opacity = "1";
+                }, 10);
 
-        const allFlowers = document.querySelectorAll('.flower-container');
-        const instructions = document.querySelector('.instructions');
-        if (instructions) {
-            instructions.style.opacity = "0";
-            setTimeout(() => {
-                instructions.style.display = "none";
-            }, 500);
-        }
-        allFlowers.forEach((container, i) => {
-            const flower = container.querySelector('.flower');
-            const hoverText = container.querySelector('.hover-text');
-            if (container !== flowerContainer) {
-                container.classList.add('hidden');
-                hoverText.style.opacity = "0";
-            } else {
-                container.classList.add('clicked');
-                hoverText.style.opacity = "1";
-            }
-            if (index === 0) {
-                flower.style.transform = "translateX(150px)";
-                hoverText.style.transform = "translateX(50px) translateY(-10px)";
-            } else if (index === 2) {
-                flower.style.transform = "translateX(-300px)";
-                hoverText.style.transform = "translateX(-370px) translateY(-5px)";
-            } else if (index === 1) {
-                flower.style.transform = "translateX(-160px)";
-                hoverText.style.transform = "translateX(-230px) translateY(-20px)";
-            }
+                const allFlowers = document.querySelectorAll('.flower-container');
+                const instructions = document.querySelector('.instructions');
+                if (instructions) {
+                    instructions.style.opacity = "0";
+                    setTimeout(() => {
+                        instructions.style.display = "none";
+                    }, 500);
+                }
+                allFlowers.forEach((container, i) => {
+                    const flower = container.querySelector('.flower');
+                    const hoverText = container.querySelector('.hover-text');
+                    if (container !== flowerContainer) {
+                        container.classList.add('hidden');
+                        hoverText.style.opacity = "0";
+                    } else {
+                        container.classList.add('clicked');
+                        hoverText.style.opacity = "1";
+                    }
+                    if (index === 0) {
+                        flower.style.transform = "translateX(150px)";
+                        hoverText.style.transform = "translateX(50px) translateY(-10px)";
+                    } else if (index === 2) {
+                        flower.style.transform = "translateX(-300px)";
+                        hoverText.style.transform = "translateX(-370px) translateY(-5px)";
+                    } else if (index === 1) {
+                        flower.style.transform = "translateX(-160px)";
+                        hoverText.style.transform = "translateX(-230px) translateY(-20px)";
+                    }
         });
 
         // Change the back images of the cards
