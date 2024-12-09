@@ -319,7 +319,7 @@
       <p>© 2024 Mariam Fatima. All rights reserved.</p>
       <div class="social-links">
           <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
-              <img src="images/linkedins" alt="LinkedIn" class="social-logo">
+              <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
           </a>
           <a href="mailto:mxf4882@nyu.edu">
               <img src="images/mail.png" alt="Email" class="social-logo">
@@ -439,7 +439,7 @@
         
         // Change the card back images based on the selected flower
         cardBacks.forEach((cardBack, i) => {
-            cardBack.style.backgroundImage = `images/url('${imagePrefix}${i + 1}.png')`;
+            cardBack.style.backgroundImage = `url('images/${imagePrefix}${i + 1}.png')`;
         });
 
         // Dynamically change the text of each card based on the selected flower
