@@ -7,49 +7,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;700&display=swap" rel="stylesheet">
   <style>
-        @font-face {
-    font-family: 'Etna'; /* Give your font a custom name */
-    src: url('etna.otf') format('opentype'); /* Path to the font file */
+    @font-face {
+      font-family: 'Etna';
+      src: url('etna.otf') format('opentype');
     }
-
 
     /* General Styling */
     body, html {
-  margin: 0;
-  padding: 0;
-  letter-spacing: 8px;
-  font-family: 'Etna', sans-serif;
-  font-weight: 200;
-  background-color: #FFFAEE; /* Light beige background */
-  height: 100vh;
-  display: flex;
-  flex-direction: column; /* Keeps title and bouquet separated */
-  align-items: center; /* Centers the bouquet horizontally */
-  overflow: hidden; /* Prevents scrolling */
-}
+      margin: 0;
+      padding: 0;
+      letter-spacing: 8px;
+      font-family: 'Etna', sans-serif;
+      font-weight: 200;
+      background-color: #FFFAEE;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
 
     /* Title Section */
     header {
-  width: 100%; /* Ensure it spans the width */
-  text-align: center;
-  position: absolute; /* Keeps it fixed at the top */
-  top: 20px; /* Adjust as needed */
-  left: 0;
-  padding: 0;
-  margin: 0;
-  z-index: 1;
-}
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      padding: 0;
+      margin: 0;
+      z-index: 1;
+    }
 
-header h1 {
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: #006083; /* Deep blue */
-  margin: 0;
-}
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #006083;
+      margin: 0;
+    }
 
     /* Navigation Flower */
-    .nav-flower {
-      position: fixed; /* Fixed in the top-left corner */
+    .nav-flower, .top-flower {
+      position: fixed;
       top: 5px;
       left: 5px;
       width: 70px;
@@ -59,192 +58,206 @@ header h1 {
     }
 
     .top-flower {
-      position: fixed; /* Fixed in the top-left corner */
-      top: 5px;
       right: 5px;
-      width: 70px;
-      height: auto;
-      cursor: pointer;
-      z-index: 5;
+      left: auto;
     }
 
-    .nav-flower:hover {
-      transform: scale(1.1); /* Subtle grow effect */
+    .nav-flower:hover, .top-flower:hover {
+      transform: scale(1.1);
       transition: transform 0.3s ease;
     }
 
+    /* Bouquet Section */
     #bouquet-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center;
-  position: relative; /* Enables the use of top for positioning */
-  top: 0px; /* Adjust the vertical offset as needed */
-  width: 100%;
-  max-width: 100vw; /* Prevents exceeding screen width */
-  height: 90%;
-  max-height: calc(100vh - 30px); /* Adjust height based on the offset */
-}
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      max-width: 100vw;
+      height: 90%;
+      max-height: calc(100vh - 30px);
+    }
 
-
-
-#bouquet {
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Keep flowers aligned properly */
-  gap: 10px; /* Spacing between flowers */
-}
+    #bouquet {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
 
     .flower {
-      width: 300px; /* Bigger flowers */
+      width: 20vw;
+      max-width: 300px;
       height: auto;
       transition: transform 0.3s ease, opacity 0.3s ease;
       cursor: pointer;
-      margin-right: -50px;
     }
 
     .flower:hover {
-      transform: scale(1.2); /* Grow slightly on hover */
+      transform: scale(1.2);
       opacity: 0.9;
     }
-    /* Positioning for the hover text */
-/* Positioning for the hover text */
-.flower-container {
-  position: relative;
-  display: inline-block;
-}
 
-.hover-text {
-  position: absolute;
-  bottom: 105%; /* Move text above the flower */
-  left: 60%;
-  transform: translateX(-50%);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #006083; /* Deep blue */
-  margin-bottom: 30px; /* Add some space between the text and the flower */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.3s ease; /* Smooth fade-in effect */
-  pointer-events: none; /* Prevent text from interfering with hover */
-}
+    /* Hover Text Styling */
+    .flower-container {
+      position: relative;
+      display: inline-block;
+    }
 
-.flower-container:hover .hover-text {
-  opacity: 1; /* Text fades in on hover */
-}
-.nav-container {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  z-index: 2;
-}
+    .hover-text {
+      position: absolute;
+      bottom: 105%;
+      left: 60%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #006083;
+      margin-bottom: 30px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
 
-.nav-hover-text {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #006083; /* Deep blue */
-  margin-left: 80px; /* Space between icon and text */
-  margin-top: 15px;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease; /* Smooth fade-in */
-}
+    .flower-container:hover .hover-text {
+      opacity: 1;
+    }
 
-.nav-container:hover .nav-hover-text {
-  opacity: 1; /* Text appears on hover */
-}
+    /* Navigation Text */
+    .nav-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
 
-.top-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  z-index: 2;
-}
+    .nav-hover-text {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #006083;
+      margin-left: 80px;
+      margin-top: 15px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
 
-.top-hover-text {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #006083; /* Deep blue */
-  margin-right: 65px; /* Space between icon and text */
-  margin-top: 15px;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease; /* Smooth fade-in */
-}
+    .top-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
 
-.top-container:hover .top-hover-text {
-  opacity: 1; /* Text appears on hover */
-}
-.instructions {
-            font-size: 1rem;
-            color: #f29ac1;
-            text-align: center;
-            letter-spacing: 1.5px;
-            margin-top: 100px;
-        }
+    .top-hover-text {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #006083;
+      margin-right: 65px;
+      margin-top: 15px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-        footer {
-    width: 100%;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: #FFFAEE;
-    color: #006083;
-    font-size: 0.6rem;
-    letter-spacing: 1px;
-    padding: 10px 0;
-    z-index: 1;
-    pointer-events: auto;
-}
+    .top-container:hover .top-hover-text {
+      opacity: 1;
+    }
 
-.social-links {
-    display: flex;           /* Ensures the logos are in one horizontal line */
-    justify-content: center; /* Centers the logos horizontally */
-    align-items: center;     /* Vertically centers the logos */
-    gap: 20px;               /* Adds space between the logos */
-    margin-top: 5px;         /* Space between the footer text and the icons */
-}
+    .instructions {
+      font-size: 1rem;
+      color: #f29ac1;
+      text-align: center;
+      letter-spacing: 1.5px;
+      margin-top: 100px;
+    }
 
-.social-logo {
-    width: 30px;             /* Size of the logos */
-    height: auto;
-    transition: transform 0.3s ease;
-}
+    footer {
+      width: 100%;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: #FFFAEE;
+      color: #006083;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      padding: 10px 0;
+      z-index: 1;
+      pointer-events: auto;
+    }
 
-.social-logo:hover {
-    transform: scale(1.1);   /* Slightly enlarges the logo on hover */
-}
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 5px;
+    }
 
+    .social-logo {
+      width: 30px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
 
+    .social-logo:hover {
+      transform: scale(1.1);
+    }
 
+    /* Media Queries for responsiveness */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .flower {
+        width: 25vw; /* Slightly larger flowers on smaller screens */
+      }
+
+      .flower-container {
+        width: 40%;
+      }
+
+      .instructions {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .flower {
+        width: 35vw; /* Larger flowers for mobile */
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .instructions {
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Navigation Flower -->
-  
   <div class="nav-container">
-  <img src="images/home.png" alt="Home Flower" class="nav-flower" onclick="navigateTo('home')">
-  <span class="nav-hover-text">HOME</span>
-</div>
+    <img src="images/home.png" alt="Home Flower" class="nav-flower" onclick="navigateTo('home')">
+    <span class="nav-hover-text">HOME</span>
+  </div>
 
-<div class="top-container">
-  <img src="images/home.png" alt="Game Flower" class="top-flower">
+  <div class="top-container">
+    <img src="images/home.png" alt="Game Flower" class="top-flower">
+  </div>
 
-</div>
-
-  
-
-  <!-- Title Section -->
   <header>
     <h1>MARIAM FATIMA</h1>
   </header>
 
-  <!-- <p style="color: #e73537; font-size: 1rem; text-align: center; margin-top: 60px;">Click a flower to explore!</p> -->
   <p class="instructions">Click on a flower to explore!</p>
 
-  <!-- Bouquet Section -->
   <div id="bouquet-container">
     <div id="bouquet">
       <div class="flower-container">
@@ -261,40 +274,36 @@ header h1 {
       </div>
     </div>
   </div>
-  
- 
-  
 
   <script>
-    // Navigation function
     function navigateTo(section) {
       if (section === "home") {
-        window.location.href = "index.html"; // Replace with the actual home URL
+        window.location.href = "index.html";
       } else if (section === "about") {
-        window.location.href = "about.html"; // Replace with the About page URL
+        window.location.href = "about.html";
       } else if (section === "projects") {
-        window.location.href = "projects.html"; // Replace with the Projects page URL
+        window.location.href = "projects.html";
       } else if (section === "contact") {
-        window.location.href = "game.html"; // Replace with the Contact page URL
+        window.location.href = "game.html";
       } else if (section === "game") {
-        window.location.href = "game.html"; // Replace with the game page URL
+        window.location.href = "game.html";
+      }
     }
-}
   </script>
+
   <footer>
     <p>© 2024 Mariam Fatima. All rights reserved.</p>
     <div class="social-links">
-        <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
-            <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
-        </a>
-        <a href="mailto:mxf4882@nyu.edu">
-            <img src="images/mail.png" alt="Email" class="social-logo">
-        </a>
-        <a href="https://github.com/mariamf19" target="_blank">
-            <img src="images/github.png" alt="GitHub" class="social-logo">
-        </a>
+      <a href="https://www.linkedin.com/in/mariam-fatima-057282300/" target="_blank">
+        <img src="images/linkedin.png" alt="LinkedIn" class="social-logo">
+      </a>
+      <a href="mailto:mxf4882@nyu.edu">
+        <img src="images/mail.png" alt="Email" class="social-logo">
+      </a>
+      <a href="https://github.com/mariamf19" target="_blank">
+        <img src="images/github.png" alt="GitHub" class="social-logo">
+      </a>
     </div>
-</footer>
- 
+  </footer>
 </body>
 </html>
